@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "210096471747",
+    "firebase_url": "https://firenoteapp-62dd8.firebaseio.com",
+    "project_id": "firenoteapp-62dd8",
+    "storage_bucket": "firenoteapp-62dd8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210096471747:android:125b60a267338ca23fac76",
+        "android_client_info": {
+          "package_name": "com.example.firenoteapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210096471747-m1oe0glnf3gtc4p7f705fud33n9pttpn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firenoteapp",
+            "certificate_hash": "b93ff474ad7e1d6a3ea6da366cd9104b07676f81"
+          }
+        },
+        {
+          "client_id": "210096471747-fa624tmk8srm8csniem07kq41g0dq1sv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDieeYb1aSK4EW99xdj2DQyUWG9yTMdbHo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210096471747-fa624tmk8srm8csniem07kq41g0dq1sv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

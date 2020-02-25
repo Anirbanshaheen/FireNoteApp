@@ -1,5 +1,7 @@
 package com.example.firenoteapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +33,9 @@ public class SignUp_activity extends AppCompatActivity {
     ProgressBar progressBar;
     DatabaseReference databaseUsers;
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +54,10 @@ public class SignUp_activity extends AppCompatActivity {
 
         // Creating table in Database
         databaseUsers = FirebaseDatabase.getInstance().getReference("USERS");
+
+
+        sharedPreferences = getSharedPreferences("FireNotesData", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         if(getIntent().hasExtra("MOBILE")){
 
@@ -76,7 +85,7 @@ public class SignUp_activity extends AppCompatActivity {
                 if(!email.equalsIgnoreCase("")){
 
                     String mobile = getIntent().getExtras().getString("MOBILE");
-                    String uid = getIntent().getExtras().getString("UID");
+                    final String uid = getIntent().getExtras().getString("UID");
                     UserInfo userInfo = new UserInfo(name,email,mobile);
 
                     databaseUsers.child(uid).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -85,6 +94,9 @@ public class SignUp_activity extends AppCompatActivity {
 //                            progressBar.setVisibility(View.INVISIBLE);
 
                             if(task.isSuccessful()){
+
+                                editor.putString("UID",uid);
+
                                 Toast.makeText(SignUp_activity.this, "User is registered successfully", Toast.LENGTH_SHORT).show();
                                 finish();
                             }else {
@@ -133,7 +145,7 @@ public class SignUp_activity extends AppCompatActivity {
                                 //save user information to database
 
                                 FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-                                String uid = currentUser.getUid();
+                                final String uid = currentUser.getUid();
 
                                 UserInfo userInfo = new UserInfo(name,email,"");
 
@@ -145,6 +157,10 @@ public class SignUp_activity extends AppCompatActivity {
                                         progressBar.setVisibility(View.INVISIBLE);
 
                                         if(task.isSuccessful()){
+
+                                            editor.putString("UID",uid);
+                                            editor.commit();
+
                                             Toast.makeText(SignUp_activity.this, "User is registered successfully", Toast.LENGTH_SHORT).show();
                                             finish();
                                         }

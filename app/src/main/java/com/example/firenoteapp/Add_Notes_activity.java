@@ -88,6 +88,11 @@ public class Add_Notes_activity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(Add_Notes_activity.this, "Note saved", Toast.LENGTH_SHORT).show();
+
+                            //need to call mainActivity readAllNotes() method
+                            ((MainActivity)getApplicationContext()).readAllNotes();
+
+
                             finish();
                         }else {
                             Toast.makeText(Add_Notes_activity.this, "Error saving note", Toast.LENGTH_SHORT).show();

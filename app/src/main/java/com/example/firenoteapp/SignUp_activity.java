@@ -1,6 +1,8 @@
 package com.example.firenoteapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -30,7 +32,7 @@ public class SignUp_activity extends AppCompatActivity {
     Button buttonSignUp;
 
     FirebaseAuth firebaseAuth;
-    ProgressBar progressBar;
+    ProgressDialog progressDialog;
     DatabaseReference databaseUsers;
 
     SharedPreferences sharedPreferences;
@@ -69,7 +71,7 @@ public class SignUp_activity extends AppCompatActivity {
 
         }
 
-        progressBar = new ProgressBar(this);
+        progressDialog = new ProgressDialog(this);
 
     }
 
@@ -84,6 +86,9 @@ public class SignUp_activity extends AppCompatActivity {
             if(!name.equalsIgnoreCase("")){
                 if(!email.equalsIgnoreCase("")){
 
+                    progressDialog.setMessage("Please wait");
+                    progressDialog.show();
+
                     String mobile = getIntent().getExtras().getString("MOBILE");
                     final String uid = getIntent().getExtras().getString("UID");
                     UserInfo userInfo = new UserInfo(name,email,mobile);
@@ -92,6 +97,8 @@ public class SignUp_activity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 //                            progressBar.setVisibility(View.INVISIBLE);
+
+                            progressDialog.dismiss();
 
                             if(task.isSuccessful()){
 
@@ -134,7 +141,10 @@ public class SignUp_activity extends AppCompatActivity {
 
 //                    registerUser(name,email,password);
 
-                    progressBar.setVisibility(View.VISIBLE);
+//                    progressBar.setVisibility(View.VISIBLE);
+
+                    progressDialog.setMessage("Please wait");
+                    progressDialog.show();
 
                     firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -154,7 +164,7 @@ public class SignUp_activity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
 
-                                        progressBar.setVisibility(View.INVISIBLE);
+                                        progressDialog.dismiss();
 
                                         if(task.isSuccessful()){
 
@@ -162,6 +172,8 @@ public class SignUp_activity extends AppCompatActivity {
                                             editor.commit();
 
                                             Toast.makeText(SignUp_activity.this, "User is registered successfully", Toast.LENGTH_SHORT).show();
+
+                                            startActivity(new Intent(SignUp_activity.this,SignIn_activity.class));
                                             finish();
                                         }
                                     }

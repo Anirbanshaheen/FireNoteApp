@@ -23,7 +23,7 @@
         <activity android:name=".SignIn_activity"/>
         <activity android:name=".SignUp_activity"/>
         <activity android:name=".Add_Notes_activity"/>
-        <!--<activity android:name=".OtpSignin_activity"/>-->
+        <activity android:name=".OtpSignin_activity"/>
 
     </application>
 

@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView_add);
         floatingActionButton = findViewById(R.id.add_Button);
         toolbar = findViewById(R.id.toolBar_Home);
+        recyclerAllNotes = findViewById(R.id.recyclerView_for_allNotes);
 
         sharedPreferences = getSharedPreferences("FireNotesData", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();

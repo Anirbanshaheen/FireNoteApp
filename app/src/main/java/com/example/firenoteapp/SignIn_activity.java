@@ -110,13 +110,13 @@ public class SignIn_activity extends AppCompatActivity {
 
                 break;
 
-//            case R.id.otpTextView:
-//
-//                Intent intent = new Intent(SignIn_activity.this,OtpSignin_activity.class);
-//                startActivity(intent);
-//                finish();
-//
-//                break;
+            case R.id.otpTextView:
+
+                Intent intent = new Intent(SignIn_activity.this,OtpSignin_activity.class);
+                startActivity(intent);
+                finish();
+
+                break;
 
         }
     }
